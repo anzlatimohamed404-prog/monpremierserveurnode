@@ -21,6 +21,21 @@ app.use((req,res,next) => {
     next();
 });
 
+// j'ajoute un middleware qui gére la sécurité d'accés
+app.use((req, res) => {
+
+
+    // je permet l'accés a mon API depuis n'importe quel origine
+    res.setHeader('Access-control-Allow-origin','*');
+
+    
+    res.setHeader('Access-Control-Allow-Headers', 'origin,X-Requested-With,content,accept,content-type,Authorization');
+
+    // j'autorise certaines en-tetes dans les requetes avec les Méthodes : GET,POST, PUT, DELETE
+    // PATCH, OPTIONS 
+    res.setHeader('access-Control-Allow-Methods, GET, POST, PUT, DELETE,PATCH, OPTIONS');
+});
+
 
 
 app.use((req, res,next) => {
@@ -40,6 +55,13 @@ app.use((req,res) => {
             nom:"pomme",
             description: "fruit saisonier riche en vitamine C",
             prix: 3
+        },
+
+        {
+            id: 2,
+            nom:"papaye",
+            description: "fruit saisonier riche en vitamine c",
+            prix: 5
         }
     ];
 
